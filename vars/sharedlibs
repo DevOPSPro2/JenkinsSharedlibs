@@ -15,14 +15,17 @@ stage('CheckoutCode'){
         common("Build") 
      }
  }
-stage ("Execute Sonarqube Report")
+stage ("Execute Sonarqube Report"){
   steps{
       common("Sonarqube Report")
   }
 }
-stage("Upload Artifacts into nexus")
+stage("Upload Artifacts into nexus"){
+     common("Upload Into Nexus")
   }
 }
 //==================================
-}// stages close
-} // pipeline close
+// stages close
+ // pipeline close
+}
+}
