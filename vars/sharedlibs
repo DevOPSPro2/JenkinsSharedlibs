@@ -1,0 +1,28 @@
+@Library('DevOPSPro2-JnekinsSharedlibs') _
+pipeline {
+agent any 
+tools {
+    maven "maven3.8.6"
+  }
+stages{
+stage('CheckoutCode'){
+  steps{
+    git 'https://github.com/DevOPSPro2/JenkinsSharedlibs'
+  }
+  }
+ stage ("Build"){
+     steps{
+        common("Build") 
+     }
+ }
+stage ("Execute Sonarqube Report")
+  steps{
+      common("Sonarqube Report")
+  }
+}
+stage("Upload Artifacts into nexus")
+  }
+}
+//==================================
+}// stages close
+} // pipeline close
