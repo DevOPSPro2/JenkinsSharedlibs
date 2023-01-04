@@ -1,0 +1,33 @@
+@Library('DevOPSPro2-JenkinsSharedlibs') _
+pipeline {
+agent any 
+tools {
+    maven "maven3.8.6"
+  }
+stages{
+stage('gitPull'){
+  steps{
+    git 'https://github.com/DevOPSPro2/maven-web-application'
+}
+}
+stage("Build"){ 
+  steps{
+    common("Build")
+}
+}
+
+stage("Execute SonarQube Report"){ 
+  steps{
+      sh "echo code quality report ok"
+    common("SonarQube Report")
+}
+}
+stage("Upload Artifacts Into Nexus"){ 
+  steps{
+      sh "echo artifacts uploaded"
+    common("Upload Into Nexus")
+}
+}
+//=========================
+}// Stages Close
+} // Pipeline Close
